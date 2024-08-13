@@ -12,3 +12,4 @@ client.get('/posts')
     .catch(error => {
         console.error('Error:', error);
     });
+
