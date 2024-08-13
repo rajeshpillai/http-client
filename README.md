@@ -15,8 +15,8 @@ A simple HTTP client library for Node.js and browser environments, with an Axios
 Clone this repository and navigate to the project directory:
 
 ```bash
-git clone <repository-url>
-cd <project-directory>
+git clone https://github.com/rajeshpillai/http-client
+cd http-client
 ```
 
 Ensure you have Node.js installed.
@@ -179,8 +179,6 @@ client.addRequestInterceptor(async (config) => {
 });
 ```
 
-### Purpose of Response Interceptors
-Response interceptors allow you to execute custom logic after a response is received from the server but before it's processed by your application. This can be useful for:
 
 Centralized Error Handling:
 
