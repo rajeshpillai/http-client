@@ -1,22 +1,27 @@
 const isNode = typeof process !== 'undefined' && process.versions != null && process.versions.node != null;
 
 class HttpClient {
-  constructor(baseURL = '') {
-      this.baseURL = baseURL;
-      this.requestInterceptors = [];
-      this.responseInterceptors = [];
+  constructor(baseURL = '', csrfToken = '') {
+    this.baseURL = baseURL;
+    this.csrfToken = csrfToken;
+    this.requestInterceptors = [];
+    this.responseInterceptors = [];
   }
 
-  addRequestInterceptor(interceptor) {
-      this.requestInterceptors.push(interceptor);
-  }
-
-  addResponseInterceptor(interceptor) {
-      this.responseInterceptors.push(interceptor);
+  setCsrfToken(token) {
+      this.csrfToken = token;
   }
 
   async request(method, endpoint, options = {}) {
       let finalOptions = { method, endpoint, ...options };
+
+      // Include CSRF token if available
+      if (this.csrfToken) {
+          finalOptions.headers = {
+              ...finalOptions.headers,
+              'X-CSRF-Token': this.csrfToken, // Custom header for CSRF token
+          };
+      }
 
       // Run request interceptors
       for (const interceptor of this.requestInterceptors) {
