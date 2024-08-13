@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HttpClient Test</title>
+</head>
+<body>
+    <h1>HttpClient Test</h1>
+    <button id="fetch-data">Fetch Data</button>
+    <pre id="output"></pre>
+
+    <!-- Include the HttpClient script -->
+    <script src="../http-client.js"></script>
+
+    <script>
+        const client = new HttpClient('https://jsonplaceholder.typicode.com');
+
+        document.getElementById('fetch-data').addEventListener('click', () => {
+            client.get('/posts/1')
+                .then(response => {
+                    document.getElementById('output').textContent = JSON.stringify(response.data, null, 2);
+                })
+                .catch(error => {
+                    document.getElementById('output').textContent = `Error: ${error}`;
+                });
+        });
+    </script>
+</body>
+</html>
