@@ -159,7 +159,8 @@ Centralized Logging:
 
 Log details of each request (like the URL, method, headers, and data) for debugging or analytics purposes.
 
-```client.addRequestInterceptor(async (config) => {
+```
+client.addRequestInterceptor(async (config) => {
     console.log('Making request to:', config.url);
     return config;
 });

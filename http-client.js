@@ -12,6 +12,14 @@ class HttpClient {
       this.csrfToken = token;
   }
 
+  addRequestInterceptor(interceptor) {
+    this.requestInterceptors.push(interceptor);
+  }
+
+  addResponseInterceptor(interceptor) {
+      this.responseInterceptors.push(interceptor);
+  }
+
   async request(method, endpoint, options = {}) {
       let finalOptions = { method, endpoint, ...options };
 
